@@ -29,8 +29,8 @@ class ContactController extends BaseController
 
                     if (!empty($userInfo) && ($token == $userInfo[0]["user_hash"])) {
                                     
-                        $mailStatusCustomer = $this->sendMail(('Copy of your contact form\n\n'.$_POST['title'].'\n'.$_POST['text']), 'eCampus - Contact Form Confirmation', $userInfo[0]["user_mail"], $userInfo[0]["user_name"], 'ecampus@squarefox.org');
-                        $mailStatusBusiness = $this->sendMail(($_POST['title'].'\n'.$_POST['text']), 'eCampus Contact Form', 'ecampus@squarefox.org', 'UTAA eCampus', $userInfo[0]["user_mail"]);
+                        $mailStatusCustomer = $this->sendMail(('Copy of your contact form\n\n'.$_POST['title'].'\n'.$_POST['text']), 'eCampus - Contact Form Confirmation', $userInfo[0]["user_mail"], $userInfo[0]["user_name"], 'ecampus@domain');
+                        $mailStatusBusiness = $this->sendMail(($_POST['title'].'\n'.$_POST['text']), 'eCampus Contact Form', 'ecampus@domain', 'UTAA eCampus', $userInfo[0]["user_mail"]);
 
                         if ($mailStatusCustomer == true && $mailStatusBusiness == true) {
                             $responseData = json_encode(array('Status' => 'Mail Sended'));
@@ -75,11 +75,11 @@ class ContactController extends BaseController
             $mail->isSMTP();
             $mail->Host = 'smtp.yandex.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'no-reply@squarefox.org';
-            $mail->Password = 'fzvznfntxwikrbhd';
+            $mail->Username = 'mail';
+            $mail->Password = 'pass';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
-            $mail->setFrom('no-reply@squarefox.org', 'No-Reply Squarefox');
+            $mail->setFrom('mail', 'mailname');
 
             //Alici Ayarları
             $mail->addAddress($sendto, $cusname);
